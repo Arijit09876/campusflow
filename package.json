@@ -1,0 +1,29 @@
+{
+  "name": "teacher-management-system",
+  "version": "0.1.0",
+  "private": true,
+  "description": "College teacher management system with role-based dashboards and OTP attendance",
+  "workspaces": [
+    "client",
+    "server"
+  ],
+  "scripts": {
+    "dev": "concurrently --kill-others-on-fail -n api,web -c blue,magenta \"npm run dev:server\" \"npm run dev:client\"",
+    "dev:server": "npm run dev --workspace server",
+    "dev:client": "npm run dev --workspace client",
+    "build": "npm run build --workspace client",
+    "start": "npm run start --workspace server",
+    "preview": "npm run preview --workspace client",
+    "test": "npm run test --workspace server",
+    "seed:admin": "node server/src/scripts/createUser.js --role=admin",
+    "seed:user": "node server/src/scripts/createUser.js",
+    "seed:demo": "node server/src/scripts/seedDemo.js",
+    "reset:password": "node server/src/scripts/resetPassword.js"
+  },
+  "engines": {
+    "node": ">=20.19"
+  },
+  "devDependencies": {
+    "concurrently": "^10.0.6"
+  }
+}
